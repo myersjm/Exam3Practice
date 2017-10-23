@@ -5,8 +5,8 @@ This problem provides practice at:
   ***  SEQUENCES.  ***
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Jessica Myers.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 ########################################################################
 # Students:
@@ -134,13 +134,19 @@ def practice_problem4a(sequence):
       :type sequence: list | tuple | string
     """
     ####################################################################
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #     The testing code is already written for you (above).
     ####################################################################
     # DIFFICULTY AND TIME RATINGS (see top of this file for explanation)
     #    DIFFICULTY:      7
     #    TIME ESTIMATE:   15 minutes.
     ####################################################################
+    list = []
+    if len(sequence) > 0:
+        for k in range(1, len(sequence)):
+            if sequence[k - 1] == sequence[k]:
+                list.append(k - 1)
+    return list
 
 
 def run_test_practice_problem4b():
@@ -197,13 +203,18 @@ def practice_problem4b(sequence):
       :type sequence: (list | tuple) of (float | int)
     """
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #     The testing code is already written for you (above).
     ####################################################################
     # DIFFICULTY AND TIME RATINGS (see top of this file for explanation)
     #    DIFFICULTY:      5
     #    TIME ESTIMATE:   10 minutes.
     ####################################################################
+    largest = sequence[0]
+    for k in range(0, len(sequence), 2):
+        if sequence[k] > largest:
+            largest = sequence[k]
+    return largest
 
 
 def run_test_practice_problem4c():
@@ -295,7 +306,7 @@ def practice_problem4c(points):
       :rtype: rg.Point | string
     """
     ####################################################################
-    # TODO: 4. Implement and test this function.
+    # DONE: 4. Implement and test this function.
     #     The testing code is already written for you (above).
     #
     # IMPORTANT: This problem is your LOWEST PRIORITY for preparing
@@ -306,6 +317,13 @@ def practice_problem4c(points):
     #    DIFFICULTY:      9
     #    TIME ESTIMATE:   15 minutes.
     ####################################################################
+    for k in range(len(points)):
+        if is_prime(points[k].x) and is_prime(points[k].y):
+            swap = points[k].x
+            points[k].x = points[k].y
+            points[k].y = swap
+            return points[k]
+    return 'Not found'
 
 
 def run_test_practice_problem4d():
@@ -391,13 +409,18 @@ def practice_problem4d(sequence):
       :rtype: int
     """
     ####################################################################
-    # TODO: 5. Implement and test this function.
+    # DONE: 5. Implement and test this function.
     #     The testing code is already written for you (above).
     ####################################################################
     # DIFFICULTY AND TIME RATINGS (see top of this file for explanation)
     #    DIFFICULTY:      7
     #    TIME ESTIMATE:   15 minutes.
     ####################################################################
+    total = 0
+    for k in range(1, len(sequence)):
+        if is_prime(sequence[k - 1]) and is_prime(sequence[k]) and (sequence[k - 1] != sequence[k]):
+            total = total + sequence[k - 1]
+    return total
 
 
 # ----------------------------------------------------------------------

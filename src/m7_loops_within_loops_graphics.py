@@ -5,8 +5,10 @@ This problem provides practice at:
   ***  LOOPS WITHIN LOOPS in 2D GRAPHICS problems.  ***
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Jessica  Myers.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
+
+import math
 
 ########################################################################
 # Students:
@@ -89,7 +91,7 @@ def hourglass(window, n, point, radius, color):
     a color that rosegraphics understands.
     """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #       We provided some tests for you (above).
     # ------------------------------------------------------------------
     ####################################################################
@@ -101,6 +103,41 @@ def hourglass(window, n, point, radius, color):
     #    DIFFICULTY:      8
     #    TIME ESTIMATE:  25 minutes (warning: this problem is challenging)
     # ------------------------------------------------------------------
+    circle = rg.Circle(point, radius)
+    circle.fill_color = color
+    line = rg.Line(rg.Point((point.x - radius), point.y), rg.Point((point.x + radius), point.y))
+    circle.attach_to(window)
+    line.attach_to(window)
+    window.render()
+
+    x = point.x
+    y = point.y
+    original_x = point.x
+    original_y = point.y
+
+    for k in range(1, n):
+        x = original_x - (radius * k)
+        y = original_y + ((math.sqrt(3)) * radius * k)
+        for h in range(k + 1):
+            new_circle = rg.Circle(rg.Point(x, y), radius)
+            new_circle.fill_color = color
+            line = rg.Line(rg.Point((x - radius), y), rg.Point((x + radius), y))
+            new_circle.attach_to(window)
+            line.attach_to(window)
+            window.render()
+            x = x + (radius * 2)
+
+    for j in range(n - 1, 0, -1):
+        x = original_x - (radius * j)
+        y = original_y - ((math.sqrt(3)) * radius * j)
+        for h in range(j + 1):
+            new_circle = rg.Circle(rg.Point(x, y), radius)
+            new_circle.fill_color = color
+            line = rg.Line(rg.Point((x - radius), y), rg.Point((x + radius), y))
+            new_circle.attach_to(window)
+            line.attach_to(window)
+            window.render()
+            x = x + (radius * 2)
 
 
 def run_test_many_hourglasses():
@@ -179,8 +216,43 @@ def many_hourglasses(window, square, m, colors):
     #                         a correct "hourglass" function above)
     #    TIME ESTIMATE:  20 minutes (warning: this problem is challenging)
     # ------------------------------------------------------------------
+    square.attach_to(window)
+    window.render()
+    x = square.center.x
+    y = square.center.y
+    center = square.center
+    side_length = square.length_of_each_side
+    radius = side_length / 2
+
+    corner1x = x - (side_length * .5)
+    corner1y = y - (side_length * .5)
+    corner2x = x + (side_length * .5)
+    corner2y = y + (side_length * .5)
+
+    original_corner1x = corner1x
+    original_corner2x = corner2x
+
+    for k in range(m):
+        #corner1x = original_corner1x
+        #corner2x = original_corner2x
 
 
+
+        rectangle = rg.Rectangle(rg.Point(corner1x, corner1y), rg.Point(corner2x, corner2y))
+        rectangle.attach_to(window)
+        window.render(.5)
+        hourglass(window, (k + 1), center, radius, 'red')
+        corner1x = corner1x + (2 * radius * (k + 1))
+        corner1y = corner1y - ((math.sqrt(3)) * radius)
+        corner2x = corner2x + (2 * radius * 2 * (k + 1))
+        corner2y = corner2y + ((math.sqrt(3)) * radius)
+        new_line = rg.Line(rg.Point(corner1x, corner1y), rg.Point(corner2x, corner2y))
+        center = new_line.get_midpoint()
+
+    #corner1x = corner1x + (2 * radius * (k + 1))
+    #corner1y = corner1y - ((math.sqrt(3)) * radius)
+    #corner2x = corner2x + (2 * radius * 2 * (k + 1))
+    #corner2y = corner2y + ((math.sqrt(3)) * radius)
 # ----------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
 # ----------------------------------------------------------------------

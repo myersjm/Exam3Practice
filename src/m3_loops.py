@@ -5,8 +5,8 @@ This problem provides practice at:
   ***  FOR and WHILE loops.  ***
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Jessica Myers.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 ########################################################################
 # Students:
@@ -45,7 +45,7 @@ def main():
 def run_test_practice_problem3():
     """ Tests the   practice_problem3  function. """
     ####################################################################
-    # TODO: 2. Implement this TEST function.
+    # DONE: 2. Implement this TEST function.
     #   It TESTS the  practice_problem3  function defined below.
     #   Include at least ** 2 ** ADDITIONAL tests beyond those we wrote.
     #
@@ -134,6 +134,27 @@ def run_test_practice_problem3():
     # SUGGESTION: Ask an assistant to CHECK your tests to confirm
     #             that they are adequate tests!
     ####################################################################
+    # My test 1
+    print("My Test 1")
+    expected = [1]
+    actual = practice_problem3(0, 1, 1)
+    print("expected: ", expected)
+    print("actual: ", actual)
+    if expected == actual:
+        print("SUCCESS")
+    else:
+        print("FAILURE")
+
+    # My test 2
+    print("My Test 2")
+    expected = [7]
+    actual = practice_problem3(2, 1, 1)
+    print("expected: ", expected)
+    print("actual: ", actual)
+    if expected == actual:
+        print("SUCCESS")
+    else:
+        print("FAILURE")
 
 
 def practice_problem3(start, n, threshold):
@@ -208,7 +229,7 @@ def practice_problem3(start, n, threshold):
       :type threshold: float
     """
     ####################################################################
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #          Some tests are already written for you (above),
     #          but you are required to write ADDITIONAL tests (above).
     ####################################################################
@@ -216,6 +237,19 @@ def practice_problem3(start, n, threshold):
     #    DIFFICULTY:      5
     #    TIME ESTIMATE:   < 15 minutes.
     ####################################################################
+    list = []
+    count = 0
+    k = start
+    if n == 0:
+        return list
+    while True:      # start, until. if count = n stop
+        if math.sin(k) + math.cos(k) > threshold:
+            list.append(k)
+            count = count + 1
+        k = k + 1
+        if count == n:
+            break
+    return list
 
 
 # ----------------------------------------------------------------------
